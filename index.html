@@ -220,6 +220,16 @@
       align-items: center;
       justify-content: center;
       font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
     }
     .hero-card-body {
       padding: 1.25rem 1.5rem 1.5rem;
@@ -687,7 +697,16 @@
       </div>
       <div>
         <div class="hero-card">
-          <div class="hero-card-img" style="background:url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&q=80&auto=format&fit=crop') center/cover no-repeat"></div>
+          <div class="hero-card-img" style="background:url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&q=80&auto=format&fit=crop') center/cover no-repeat">
+            <video
+              class="hero-card-video"
+              autoplay muted loop playsinline preload="metadata"
+              poster="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&q=80&auto=format&fit=crop"
+              aria-hidden="true"
+            >
+              <source src="https://videos.pexels.com/video-files/6459996/6459996-hd_1280_720_25fps.mp4" type="video/mp4">
+            </video>
+          </div>
           <div class="hero-card-body">
             <span class="hero-card-tag">Хіт сезону</span>
             <div class="hero-card-name">Сукня «Літній бриз»</div>
@@ -737,17 +756,17 @@
     </div>
 
     <div class="cat-tabs">
-      <div class="cat-tab active">Всі</div>
-      <div class="cat-tab">Сукні</div>
-      <div class="cat-tab">Блузи</div>
-      <div class="cat-tab">Штани</div>
-      <div class="cat-tab">Піджаки</div>
-      <div class="cat-tab">Аксесуари</div>
+      <div class="cat-tab active" data-cat="all">Всі</div>
+      <div class="cat-tab" data-cat="dress">Сукні</div>
+      <div class="cat-tab" data-cat="blouse">Блузи</div>
+      <div class="cat-tab" data-cat="pants">Штани</div>
+      <div class="cat-tab" data-cat="jacket">Піджаки</div>
+      <div class="cat-tab" data-cat="accessory">Аксесуари</div>
     </div>
 
-    <div class="products-grid">
+    <div class="products-grid" id="productsGrid">
       <!-- Product 1 -->
-      <div class="product-card">
+      <div class="product-card" data-cat="dress">
         <div class="product-img" style="background:url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80&auto=format&fit=crop') center/cover no-repeat;"><span class="product-badge">Новинка</span>
         </div>
         <div class="product-body">
@@ -764,7 +783,7 @@
         </div>
       </div>
       <!-- Product 2 -->
-      <div class="product-card">
+      <div class="product-card" data-cat="blouse">
         <div class="product-img" style="background:url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80&auto=format&fit=crop') center/cover no-repeat;"><span class="product-badge">Хіт</span>
         </div>
         <div class="product-body">
@@ -778,7 +797,7 @@
         </div>
       </div>
       <!-- Product 3 -->
-      <div class="product-card">
+      <div class="product-card" data-cat="jacket">
         <div class="product-img" style="background:url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80&auto=format&fit=crop') center/cover no-repeat;"></div>
         <div class="product-body">
           <div class="product-name">Піджак «Класика»</div>
@@ -791,7 +810,7 @@
         </div>
       </div>
       <!-- Product 4 -->
-      <div class="product-card">
+      <div class="product-card" data-cat="dress">
         <div class="product-img" style="background:url('https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&q=80&auto=format&fit=crop') center/cover no-repeat;"></div>
         <div class="product-body">
           <div class="product-name">Сукня «Вечірня»</div>
@@ -804,7 +823,7 @@
         </div>
       </div>
       <!-- Product 5 -->
-      <div class="product-card">
+      <div class="product-card" data-cat="pants">
         <div class="product-img" style="background:url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&q=80&auto=format&fit=crop') center/cover no-repeat;"><span class="product-badge">Новинка</span>
         </div>
         <div class="product-body">
@@ -818,7 +837,7 @@
         </div>
       </div>
       <!-- Product 6 -->
-      <div class="product-card">
+      <div class="product-card" data-cat="accessory">
         <div class="product-img" style="background:url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80&auto=format&fit=crop') center/cover no-repeat;"></div>
         <div class="product-body">
           <div class="product-name">Сумка «Daily»</div>
@@ -869,7 +888,7 @@
       <div class="step-card">
         <div class="step-num">4</div>
         <div class="step-title">Примірка + повернення</div>
-        <div class="step-desc">Якщо не підійшов розмір — повернення без питань впродовж 14 днів</div>
+        <div class="step-desc">Приміряй прямо у відділенні Нової Пошти чи Укрпошти — оплачуєш лише після того, як переконалась, що розмір і фасон підійшли. Якщо ні — повернення без питань впродовж 14 днів</div>
       </div>
     </div>
   </div>
@@ -1247,6 +1266,27 @@ a,button{-webkit-tap-highlight-color:transparent}
 })();
 </script>
 <!-- /wow-polish-pack -->
+
+<!-- wow-cat-filter -->
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.cat-tab');
+  var cards = document.querySelectorAll('#productsGrid .product-card');
+  if(!tabs.length || !cards.length) return;
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      var cat = tab.getAttribute('data-cat');
+      cards.forEach(function(card){
+        var show = cat === 'all' || card.getAttribute('data-cat') === cat;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+<!-- /wow-cat-filter -->
 
 
 <!-- wow-demo-pixel -->
