@@ -130,24 +130,36 @@
 
     /* HERO */
     .hero {
-      background: linear-gradient(135deg, var(--bg) 0%, var(--white) 60%);
-      padding: 5rem 0 4rem;
+      background: #0e0a0d;
+      padding: 0;
       position: relative;
       overflow: hidden;
+      min-height: min(92vh, 760px);
+      display: flex;
+      align-items: stretch;
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: .32;
     }
     .hero::before {
       content: '';
       position: absolute;
-      top: -100px; right: -80px;
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(194,24,91,.07) 0%, transparent 70%);
+      inset: 0;
+      background: linear-gradient(120deg, rgba(14,10,13,.95) 0%, rgba(14,10,13,.7) 50%, rgba(194,24,91,.08) 100%);
       pointer-events: none;
-      border-radius: 50%;
+      z-index: 1;
     }
     .hero-inner {
       display: grid;
-      gap: 3rem;
+      gap: 2.5rem;
       align-items: center;
+      position: relative;
+      z-index: 2;
+      padding: 6rem 0 5rem;
+      width: 100%;
     }
     @media (min-width: 768px) {
       .hero-inner { grid-template-columns: 1fr 1fr; }
@@ -156,8 +168,9 @@
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      background: var(--rose-light);
-      color: var(--rose);
+      background: rgba(194,24,91,.2);
+      border: 1px solid rgba(194,24,91,.4);
+      color: #f8a8c2;
       font-size: .8125rem;
       font-weight: 600;
       padding: .4rem .9rem;
@@ -176,17 +189,17 @@
     }
     .hero h1 {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+      font-size: clamp(2.6rem, 6.5vw, 4.4rem);
       font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -.02em;
-      color: var(--text);
-      margin-bottom: 1.125rem;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin-bottom: 1.25rem;
     }
-    .hero h1 em { font-style: normal; color: var(--rose); }
+    .hero h1 em { font-style: normal; color: #f8a8c2; }
     .hero-sub {
       font-size: 1.0625rem;
-      color: var(--muted);
+      color: rgba(255,255,255,.6);
       line-height: 1.75;
       margin-bottom: 2rem;
       max-width: 460px;
@@ -201,16 +214,19 @@
       align-items: center;
       gap: .5rem;
       font-size: .875rem;
-      color: var(--muted);
+      color: rgba(255,255,255,.45);
       margin-top: 1.25rem;
     }
     /* Hero card - product preview */
     .hero-card {
-      background: var(--white);
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.15);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 24px 64px rgba(0,0,0,.5);
       overflow: hidden;
-      max-width: 380px;
+      max-width: 360px;
       margin: 0 auto;
     }
     .hero-card-img {
@@ -673,6 +689,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg-img" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-inner">
       <div>
@@ -709,8 +726,8 @@
           </div>
           <div class="hero-card-body">
             <span class="hero-card-tag">Хіт сезону</span>
-            <div class="hero-card-name">Сукня «Літній бриз»</div>
-            <div class="hero-card-price">1 290 грн</div>
+            <div class="hero-card-name" style="color:#fff">Сукня «Літній бриз»</div>
+            <div class="hero-card-price" style="color:#f8a8c2">1 290 грн</div>
             <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer"
                class="hero-card-btn">
               🛍️ Замовити в Telegram
@@ -912,21 +929,21 @@
       </div>
       <div class="arrivals-items">
         <div class="arrivals-item">
-          <div class="arrivals-item-emoji">👗</div>
+          <div class="arrivals-item-emoji" style="background:url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=120&h=120&fit=crop&q=80') center/cover;border-radius:12px;width:52px;height:52px;flex-shrink:0"></div>
           <div>
             <div class="arrivals-item-name">Колекція «Осінь 2026»</div>
             <div class="arrivals-item-desc">Нові надходження — з понеділка</div>
           </div>
         </div>
         <div class="arrivals-item">
-          <div class="arrivals-item-emoji">🧥</div>
+          <div class="arrivals-item-emoji" style="background:url('https://images.unsplash.com/photo-1594938298603-c8148c4b4e5d?w=120&h=120&fit=crop&q=80') center/cover;border-radius:12px;width:52px;height:52px;flex-shrink:0"></div>
           <div>
             <div class="arrivals-item-name">Піджаки та пальта</div>
             <div class="arrivals-item-desc">15 нових моделей · Вже в каталозі</div>
           </div>
         </div>
         <div class="arrivals-item">
-          <div class="arrivals-item-emoji">🎀</div>
+          <div class="arrivals-item-emoji" style="background:url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=120&h=120&fit=crop&q=80') center/cover;border-radius:12px;width:52px;height:52px;flex-shrink:0"></div>
           <div>
             <div class="arrivals-item-name">Аксесуари</div>
             <div class="arrivals-item-desc">Сумки, пояси, хустки — від 290 грн</div>
