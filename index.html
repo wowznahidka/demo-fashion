@@ -128,6 +128,37 @@
     @media (min-width: 600px) {
       .nav-cta { display: inline-flex; padding: .625rem 1.5rem; font-size: .875rem; }
     }
+    /* ─── MOBILE BURGER ─── */
+    .nav-burger {
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+      margin-left: auto;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: #fff; transition: all .3s;
+    }
+    @media (min-width: 768px) { .nav-burger { display: none; } }
+    .nav-fly {
+      display: none; position: fixed; inset: 0; background: #0e0a0d;
+      z-index: 9998; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+    }
+    .nav-fly.open { display: flex; }
+    .nav-fly a {
+      font-size: 1.8rem; font-weight: 300; letter-spacing: .15em;
+      text-transform: uppercase; color: rgba(255,255,255,.85);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-fly a:hover { color: #fff; }
+    .nav-fly .btn-primary {
+      font-size: .85rem; letter-spacing: .12em; margin-top: 1rem;
+    }
+    .nav-fly-close {
+      position: absolute; top: 22px; right: 22px;
+      font-size: 28px; line-height: 1; color: rgba(255,255,255,.4);
+      background: none; border: none; cursor: pointer;
+    }
 
     /* HERO */
     .hero {
@@ -684,9 +715,28 @@
          class="btn btn-primary nav-cta" aria-label="Написати в Telegram">
         Написати в Telegram
       </a>
+      <button class="nav-burger" id="navBurger" aria-label="Відкрити меню">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+<div class="nav-fly" id="navFly" role="dialog" aria-label="Мобільне меню">
+  <button class="nav-fly-close" id="navFlyClose" aria-label="Закрити">×</button>
+  <a href="#catalog" onclick="document.getElementById('navFly').classList.remove('open')">Каталог</a>
+  <a href="#how" onclick="document.getElementById('navFly').classList.remove('open')">Як замовити</a>
+  <a href="#reviews" onclick="document.getElementById('navFly').classList.remove('open')">Відгуки</a>
+  <a href="#faq" onclick="document.getElementById('navFly').classList.remove('open')">FAQ</a>
+  <a href="https://telegram.me/znahidkawow" target="_blank" class="btn btn-primary">Написати в Telegram</a>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('navBurger'),f=document.getElementById('navFly'),c=document.getElementById('navFlyClose');
+  if(!b)return;
+  b.addEventListener('click',function(){f.classList.add('open');document.body.style.overflow='hidden'});
+  c.addEventListener('click',function(){f.classList.remove('open');document.body.style.overflow=''});
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero">
